@@ -25,3 +25,8 @@ mypy:
 .PHONY: ty
 ty:
 	uv run ty check *.py
+
+.PHONY: hello
+hello:
+	PYTHONPATH=. uv run ml-cli hello
+
