@@ -1,0 +1,27 @@
+.PHONY: install
+install:
+	uv sync
+
+clean:
+	rm -rf .venv .mypy_cache .ruff_cache .pytest_cache .coverage
+
+# require: uv run jupytext --set-formats ipynb,py:percent notebook.ipynb
+.PHONY: sync
+sync:
+	uv run jupytext --sync notebook.py
+
+.PHONY: format
+format:
+	uv run ruff format
+
+.PHONY: lint
+lint:
+	uv run ruff check --fix
+
+.PHONY: mypy
+mypy:
+	uv run mypy *.py
+
+.PHONY: ty
+ty:
+	uv run ty check *.py
